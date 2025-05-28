@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>三福职场冒险</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f3f0;
+            color: #333;
+            line-height: 1.6;
+            background-image: url('https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg');
+            background-size: cover;
+        }
+        .game-container {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+        }
+        h1 {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        h2 {
+            color: #3498db;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+        .options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        .option {
+            width: 30%;
+            padding: 15px;
+            margin-bottom: 15px;
+            background-color: #f0f7fd;
+            border: 2px solid #3498db;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+        .option:hover {
+            background-color: #d4e6f1;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        }
+        .stage {
+            display: none;
+        }
+        .active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        .qr-container {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(245, 245, 245, 0.8);
+            border-radius: 8px;
+            display: none;
+        }
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .slogan {
+            margin-top: 15px;
+            font-size: 18px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        .restart-btn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        .restart-btn:hover {
+            background-color: #c0392b;
+            transform: scale(1.05);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>三福职场冒险</h1>
+        
+        <!-- 阶段一 -->
+        <div class="stage active" id="stage1">
+            <h2>阶段一：新人报到</h2>
+            <p>入职三福总部第一天，HR要求从员工福利衣橱挑选通勤装扮。</p>
+            <div class="options">
+                <div class="option" onclick="nextStage(1, 1)">【学院风】</div>
+                <div class="option" onclick="nextStage(1, 2)">【轻职场】</div>
+                <div class="option" onclick="nextStage(1, 3)">【甜酷混搭】</div>
+            </div>
+        </div>
+        
+        <!-- 阶段二 -->
+        <div class="stage" id="stage2">
+            <h2>阶段二：首场战役</h2>
+            <p>协助策划三福「青春宇宙」主题新品发布会，选择主推品类。</p>
+            <div class="options">
+                <div class="option" onclick="nextStage(2, 1)">【服饰组-JK制服】</div>
+                <div class="option" onclick="nextStage(2, 2)">【美妆组-国风彩妆】</div>
+                <div class="option" onclick="nextStage(2, 3)">【配饰组-亚克力发饰】</div>
+            </div>
+        </div>
+        
+        <!-- 阶段三 -->
+        <div class="stage" id="stage3">
+            <h2>阶段三：危机公关</h2>
+            <p>品牌直播中嘉宾丝袜勾丝，弹幕群嘲「质量差」，需紧急应对。</p>
+            <div class="options">
+                <div class="option" onclick="nextStage(3, 1)">【基础款叠穿】</div>
+                <div class="option" onclick="nextStage(3, 2)">【积分兑换新品】</div>
+                <div class="option" onclick="nextStage(3, 3)">【AR虚拟试衣】</div>
+            </div>
+        </div>
+        
+        <!-- 阶段四 -->
+        <div class="stage" id="stage4">
+            <h2>阶段四：跨界合作</h2>
+            <p>推动三福与外部IP联名，需选择合作方向。</p>
+            <div class="options">
+                <div class="option" onclick="nextStage(4, 1)">【环保再生】</div>
+                <div class="option" onclick="nextStage(4, 2)">【元宇宙穿搭】</div>
+                <div class="option" onclick="nextStage(4, 3)">【文化破壁】</div>
+            </div>
+        </div>
+        
+        <!-- 阶段五 -->
+        <div class="stage" id="stage5">
+            <h2>阶段五：终极考验</h2>
+            <p>代表三福登上亚洲时尚盛典，决定红毯造型策略。</p>
+            <div class="options">
+                <div class="option" onclick="showEnding(1)">【全经典款混搭】</div>
+                <div class="option" onclick="showEnding(2)">【未发售概念款】</div>
+                <div class="option" onclick="showEnding(3)">【用户共创款】</div>
+            </div>
+        </div>
+        
+        <!-- 结局部分 -->
+        <div class="stage" id="ending">
+            <h2 id="ending-title">结局标题</h2>
+            <p id="ending-content">结局内容将在这里显示...</p>
+            <div class="qr-container" id="qr-container">
+                <div class="qr-code">
+                    <!-- 替换为实际的三福二维码 -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://www.sanfu.com" alt="三福二维码">
+                </div>
+                <div class="slogan">三福定格万千生活帮</div>
+            </div>
+            <button class="restart-btn" onclick="restartGame()">重新开始</button>
+        </div>
+    </div>
+
+    <script>
+        // 存储用户选择
+        let choices = [];
+        
+        // 结局文本
+        const endings = [
+            {
+                title: "经典传承者",
+                content: "你选择了全经典款混搭策略，红毯上展现出三福历久弥新的品牌魅力。媒体评价这是'对时尚本质的回归'，三福经典款销量次日暴涨300%。你的稳健风格获得了董事会的高度认可，被任命为品牌传承总监。"
+            },
+            {
+                title: "未来先锋",
+                content: "大胆启用未发售概念款的决策让三福成为盛典焦点。科技媒体头版报道'三福定义未来时尚'，概念款预售链接被挤爆服务器。你的前瞻性眼光使你获得年度创新人物奖，并负责组建三福未来实验室。"
+            },
+            {
+                title: "用户知己",
+                content: "用户共创款引发社交媒体狂欢，粉丝自发组织的'三福同款挑战'话题阅读量破10亿。CEO在内部信中称赞你'真正理解Z世代需求'，你主导的UGC设计平台成为公司战略级项目。"
+            },
+            {
+                title: "稳健操盘手",
+                content: "你的务实选择让三福在红毯上展现出可靠品质。虽然没有引爆话题，但专业买手们纷纷追加订单，财报显示季度利润率提升5个百分点。你被调任为供应链优化部门负责人。"
+            },
+            {
+                title: "话题制造者",
+                content: "你的选择制造了足够争议，红毯造型登上热搜第一。虽然评价两极分化，但品牌讨论度创历史新高。市场部为你设立特别小组，专门负责制造'健康的话题争议'。"
+            },
+            {
+                title: "文化桥梁",
+                content: "你的选择成功融合多元文化，三福被时尚评论家称为'新消费时代的文化翻译者'。海外社交媒体自然增长百万粉丝，你被提名年度文化影响力人物。"
+            },
+            {
+                title: "效率专家",
+                content: "你的危机处理方案以最小成本实现最大效果，被写入集团危机管理手册。财务部门特别表彰你节省的预算，你获得破格晋升为区域运营总监。"
+            },
+            {
+                title: "数字原住民",
+                content: "你主导的数字化方案成为行业标杆，三福APP新增用户环比增长180%。集团CTO邀请你加入数字化转型委员会，负责制定全渠道融合战略。"
+            },
+            {
+                title: "情怀大师",
+                content: "你唤起了消费者对品牌的情感连接，三福老顾客复购率提升至行业第一。品牌研究院将你的案例作为'情感营销典范'，你受邀在各大商学院巡回演讲。"
+            }
+        ];
+        
+        // 进入下一阶段
+        function nextStage(stage, choice) {
+            choices.push(choice);
+            document.getElementById(`stage${stage}`).classList.remove("active");
+            document.getElementById(`stage${stage+1}`).classList.add("active");
+        }
+        
+        // 显示结局
+        function showEnding(choice) {
+            choices.push(choice);
+            
+            // 根据所有选择生成随机结局(1-9)
+            const seed = choices.reduce((a, b) => a + b, 0);
+            const endingIndex = (seed % 9);
+            
+            document.getElementById("stage5").classList.remove("active");
+            document.getElementById("ending").classList.add("active");
+            
+            document.getElementById("ending-title").textContent = endings[endingIndex].title;
+            document.getElementById("ending-content").textContent = endings[endingIndex].content;
+            
+            // 显示二维码
+            setTimeout(() => {
+                document.getElementById("qr-container").style.display = "block";
+            }, 1000);
+        }
+        
+        // 重新开始游戏
+        function restartGame() {
+            choices = [];
+            document.getElementById("ending").classList.remove("active");
+            document.getElementById("stage1").classList.add("active");
+            document.getElementById("qr-container").style.display = "none";
+        }
+    </script>
+</body>
+</html>
